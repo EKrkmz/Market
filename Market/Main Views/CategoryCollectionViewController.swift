@@ -17,7 +17,7 @@ class CategoryCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        CategoryManager.shared.createCategorySet()
     }
     
     override func viewDidAppear(_ animated: Bool) {
