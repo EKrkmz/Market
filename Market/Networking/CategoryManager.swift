@@ -43,8 +43,13 @@ class CategoryManager {
         return NSDictionary(objects: [category.id, category.name, category.imageName ?? ""], forKeys: [kOBJECTID as NSCopying, kNAME as NSCopying, kIMAGENAME as NSCopying])
     }
 
-    //MARK: - Use only one time!
     func createCategorySet() {
+        //This method should be called only one time. So made sure of it with user defaults
+         guard !UserDefaults.standard.bool(forKey: "didCreateCategories") else {
+            return
+        }
+        UserDefaults.standard.setValue(true, forKey: "didCreateCategories")
+        
         let womenClothing = Category(name: "Women", imageName: "womenCloth")
         let footWaer = Category(name: "Footwaer", imageName: "footWaer")
         let electronics = Category(name: "Electronics", imageName: "electronics")
